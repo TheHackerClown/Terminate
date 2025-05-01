@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+@font-face {
+    font-family: "Custom";
+    src: url("/custom.ttf") format("truetype");
+}
+
+* {
+    font-family: "Custom";
+}
