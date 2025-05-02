@@ -72,7 +72,7 @@ export default function Game() {
 
     <div className="center border-1 h-10/12 overflow-auto">
       <ul>
-        {chats.map((val)=>(<li className="m-2 column center text-red-400 border-1 rounded-xl w-full">{val} <small className="text-white">by DHru</small></li>))}
+        {chats.map((val)=>(<li key={Math.random()*99999} className="m-2 column center text-red-400 border-1 rounded-xl w-full">{val} <small className="text-white">by DHru</small></li>))}
       </ul>
       
     </div>
