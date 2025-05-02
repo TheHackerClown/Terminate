@@ -1,10 +1,12 @@
 "use client";
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react"
-
+import { ChangeEvent,KeyboardEvent, FormEvent, MouseEvent, useEffect, useRef, useState } from "react"
 
 export default function Game() {
   const gameref = useRef<HTMLCanvasElement | null>(null);
-  const players = ["hehe", "new player", "yo mama", "scrimmy", "cockroachegg", "fat32","teri sasu"]
+  const players = ["Use CTRL + E for chat typing", "Use CTRL + C for game screen focusing", "Use CTRL + A for going into fullscreen mode", "cockroachegg", "fat32"];
+
+
+  const chatboxref = useRef<HTMLInputElement | null>(null);
 
   const [chats, setChats] = useState<string[]>(players);
 
@@ -15,6 +17,36 @@ export default function Game() {
     setChats([...chats, value])
     setValue("");
   }
+  const keydownhandler = (e: KeyboardEvent<Element>) =>{
+    if (e.ctrlKey && e.key.toLocaleLowerCase() === 'e') {
+      e.preventDefault();
+      chatboxref.current?.focus();
+      console.log('ctrl + e pressed')
+      //for backward compatiblity, this false is required
+      return false
+    } else
+    if (e.ctrlKey && e.key.toLocaleLowerCase() === 'c') {
+      e.preventDefault();
+      gameref.current?.requestPointerLock();
+      return false
+    }
+    else
+    if (e.ctrlKey && e.key.toLocaleLowerCase() === 'a') {
+      e.preventDefault();
+      //Temporary
+      //Remove this ASAP
+      document.body.requestFullscreen().catch(()=>alert("Please Click on the website then press CTRL + A"));
+      return false
+    }
+  }
+
+
+  const handleTouch = (e: MouseEvent<HTMLCanvasElement | MouseEvent>) => {
+    console.log(123);
+    gameref.current?.requestPointerLock();
+  }
+
+
 
   useEffect(()=>{
     if (gameref.current) {
@@ -28,11 +60,25 @@ export default function Game() {
     img.onload = () => {
       ctx.drawImage(img, 0, canheight/3, canwidth, canheight/3);
     }
+
+    //These type make me unpardonize my hairs
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    document.body.addEventListener("keydown",(e: any)=> keydownhandler(e),false)
+    // eslint-enable-next-line @typescript-eslint/no-explicit-any
   }
 
-  
+
+  return (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    document.body.removeEventListener("keydown",(ev : any)=>keydownhandler(ev), false)
+    // eslint-enable-next-line @typescript-eslint/no-explicit-any
+  )
   }
   },[gameref])
+
+
+
+
   return (<>
     <div className="row">
     
@@ -73,7 +119,7 @@ export default function Game() {
     </h1>
     
     {/*Game Canvas for Player to Play Game */}
-    <canvas className="border-2 m-2 w-99 min-w-99 h-99 min-h-99" ref={gameref} >For Game Canvas</canvas>
+    <canvas className="border-2 m-2 w-99 min-w-99 h-99 min-h-99" onClick={(e)=>handleTouch(e)} ref={gameref} >For Game Canvas</canvas>
     
     {/*Footer */}
     <div className="text-xs text-center">Made with ❤️ by <a className="text-red-300 hover:border-b-1" href="https://github.com/TheHackerClown">TheHackerClown</a></div>
@@ -98,7 +144,7 @@ export default function Game() {
     {/*Here we can Enter the Message to sent to global chat, private chat is not available, go to hell cyberbullies, which is ofcourse me */}
     <div className="h-43 border-1 p-2 center">
       <form action="#" className=" row centers" onSubmit={(e)=>handleval(e)} method="post">
-        <input type="text" name="chatpost" className="border-1 mt-auto mb-auto w-full m-4 rounded-xl text-center" id="chatpost" placeholder="Write something" value={value} onChange={(e:ChangeEvent<HTMLInputElement>)=>setValue(e.target.value)} />
+        <input ref={chatboxref} type="text" name="chatpost" className="border-1 mt-auto mb-auto w-full m-4 rounded-xl text-center" id="chatpost" placeholder="Write something" value={value} onChange={(e:ChangeEvent<HTMLInputElement>)=>setValue(e.target.value)}/>
         <input type="submit" className="bg-green-600 rounded-xl p-2 text-white" value="Send" />
       </form>
     </div>

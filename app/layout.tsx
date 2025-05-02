@@ -7,7 +7,9 @@ export const metadata: Metadata = {
   applicationName: "Terminate Shooter",
   generator: "TheHackerClown",
   creator: "TheHackerClown",
-  icons: "https://terminate-pearl.vercel.app/favicon.ico",
+  icons: {
+    icon: "/favicon.ico",
+  },
   authors: [{ name: "TheHackerClown", url: "https://github.com/TheHackerClown" }]
   
 };
