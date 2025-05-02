@@ -67,19 +67,19 @@ export default function Game() {
     <div className="text-xs text-center">Made with ❤️ by <a className="text-red-300 hover:border-b-1" href="https://github.com/TheHackerClown">TheHackerClown</a></div>
     </div>
 
-    <div className="border-2 text-center w-99 ml-2 mr-1 mt-1 mb-1 h-dvh">
+    <div className="border-2 text-center w-1/3 ml-2 mr-1 mt-1 mb-1 h-dvh">
     Server Chat
 
-    <div className="center border-1 h-10/12 overflow-auto">
+    <div className="center border-1 h-10/12 w-full overflow-auto column">
       <ul>
-        {chats.map((val)=>(<li key={Math.random()*99999} className="m-2 column center text-red-400 border-1 rounded-xl w-full">{val} <small className="text-white">by DHru</small></li>))}
+        {chats.map((val)=>(<li key={Math.random()*99999} className="m-2 column center text-red-400 border-1 p-3 rounded-xl w-90 h-auto overflow-hidden">{val} <small className="text-white">by DHru</small></li>))}
       </ul>
       
     </div>
     
-    <div className="h-fit p-2 center">
+    <div className="h-43 border-1 p-2 center">
       <form action="#" className=" row centers" onSubmit={(e)=>handleval(e)} method="post">
-        <input type="text" name="chatpost" className="border-1 mt-auto mb-auto w-full m-4 rounded-xl" id="chatpost" value={value} onChange={(e:ChangeEvent<HTMLInputElement>)=>setValue(e.target.value)} />
+        <input type="text" name="chatpost" className="border-1 mt-auto mb-auto w-full m-4 rounded-xl text-center" id="chatpost" placeholder="Write something" value={value} onChange={(e:ChangeEvent<HTMLInputElement>)=>setValue(e.target.value)} />
         <input type="submit" className="bg-green-600 rounded-xl p-2 text-white" value="Send" />
       </form>
     </div>
