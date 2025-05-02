@@ -4,6 +4,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Terminate",
   description: "A 2D Shooter Game",
+  applicationName: "Terminate Shooter",
+  generator: "TheHackerClown",
+  creator: "TheHackerClown",
+  icons: "https://terminate-pearl.vercel.app/favicon.ico",
+  authors: [{ name: "TheHackerClown", url: "https://github.com/TheHackerClown" }]
+  
 };
 
 export default function RootLayout({
