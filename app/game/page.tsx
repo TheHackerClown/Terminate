@@ -1,7 +1,6 @@
 "use client";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react"
 
-import Hellfire from "/Hellfire.jpg";
 
 export default function Game() {
   const gameref = useRef<HTMLCanvasElement | null>(null);
@@ -80,7 +79,7 @@ export default function Game() {
     
     <div className="h-fit p-2 center">
       <form action="#" className=" row centers" onSubmit={(e)=>handleval(e)} method="post">
-        <input type="text" name="chatpost" className="border-1 mt-auto mb-auto w-full m-4 rounded-xl" id="chatpost" value={value} onChange={(e:ChangeEvent)=>setValue(e.target.value)} />
+        <input type="text" name="chatpost" className="border-1 mt-auto mb-auto w-full m-4 rounded-xl" id="chatpost" value={value} onChange={(e:ChangeEvent<HTMLInputElement>)=>setValue(e.target.value)} />
         <input type="submit" className="bg-green-600 rounded-xl p-2 text-white" value="Send" />
       </form>
     </div>
