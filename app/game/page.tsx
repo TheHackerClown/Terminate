@@ -41,7 +41,8 @@ export default function Game() {
   }
 
 
-  const handleTouch = (e: MouseEvent<HTMLCanvasElement | MouseEvent>) => {
+  const handleTouch = () => {
+    
     console.log(123);
     gameref.current?.requestPointerLock();
   }
@@ -119,7 +120,7 @@ export default function Game() {
     </h1>
     
     {/*Game Canvas for Player to Play Game */}
-    <canvas className="border-2 m-2 w-99 min-w-99 h-99 min-h-99" onClick={(e)=>handleTouch(e)} ref={gameref} >For Game Canvas</canvas>
+    <canvas className="border-2 m-2 w-99 min-w-99 h-99 min-h-99" onClick={handleTouch} ref={gameref} >For Game Canvas</canvas>
     
     {/*Footer */}
     <div className="text-xs text-center">Made with ❤️ by <a className="text-red-300 hover:border-b-1" href="https://github.com/TheHackerClown">TheHackerClown</a></div>
