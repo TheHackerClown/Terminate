@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent,KeyboardEvent, FormEvent, MouseEvent, useEffect, useRef, useState } from "react"
+import { ChangeEvent,KeyboardEvent, FormEvent, useEffect, useRef, useState } from "react"
 
 export default function Game() {
   const gameref = useRef<HTMLCanvasElement | null>(null);
@@ -90,7 +90,7 @@ export default function Game() {
         Server Details
 
         {/*Here Player Names will be shown */}
-        <h4 className="border-1 pt-2 pb-2">
+        <h4 className="border pt-2 pb-2">
           Server Status: ....
         </h4>
         Players
@@ -100,7 +100,7 @@ export default function Game() {
 
 
         {/*Here Player Weapons will be shown, but for now i will leave it here */}
-        <div className="border-1 text-center h-full center">
+        <div className="border text-center h-full center">
           The Veterans know,
           <br />
           how to survive.
@@ -123,7 +123,7 @@ export default function Game() {
     <canvas className="border-2 m-2 w-99 min-w-99 h-99 min-h-99" onClick={handleTouch} ref={gameref} >For Game Canvas</canvas>
     
     {/*Footer */}
-    <div className="text-xs text-center">Made with ❤️ by <a className="text-red-300 hover:border-b-1" href="https://github.com/TheHackerClown">TheHackerClown</a></div>
+    <div className="text-xs text-center">Made with ❤️ by <a className="text-red-300 hover:border-b" href="https://github.com/TheHackerClown">TheHackerClown</a></div>
     </div>
 
 
@@ -135,17 +135,17 @@ export default function Game() {
 
 
     {/*All the Chats to be Listed Here */}
-    <div className="center border-1 h-10/12 w-full overflow-auto column">
+    <div className="center border h-10/12 w-full overflow-auto column">
       <ul>
-        {chats.map((val)=>(<li key={Math.random()*99999} className="m-2 column center text-red-400 border-1 p-3 rounded-xl w-90 h-auto overflow-hidden">{val} <small className="text-white">by DHru</small></li>))}
+        {chats.map((val)=>(<li key={Math.random()*99999} className="m-2 column center text-red-400 border p-3 rounded-xl w-90 h-auto overflow-hidden">{val} <small className="text-white">by DHru</small></li>))}
       </ul>
     </div>
     
 
     {/*Here we can Enter the Message to sent to global chat, private chat is not available, go to hell cyberbullies, which is ofcourse me */}
-    <div className="h-43 border-1 p-2 center">
+    <div className="h-43 border p-2 center">
       <form action="#" className=" row centers" onSubmit={(e)=>handleval(e)} method="post">
-        <input ref={chatboxref} type="text" name="chatpost" className="border-1 mt-auto mb-auto w-full m-4 rounded-xl text-center" id="chatpost" placeholder="Write something" value={value} onChange={(e:ChangeEvent<HTMLInputElement>)=>setValue(e.target.value)}/>
+        <input ref={chatboxref} type="text" name="chatpost" className="border mt-auto mb-auto w-full m-4 rounded-xl text-center" id="chatpost" placeholder="Write something" value={value} onChange={(e:ChangeEvent<HTMLInputElement>)=>setValue(e.target.value)}/>
         <input type="submit" className="bg-green-600 rounded-xl p-2 text-white" value="Send" />
       </form>
     </div>
